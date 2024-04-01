@@ -1,2 +1,3 @@
 ---
+ansible_user: lvm5
 ansible_ssh_private_key_file: /home/apx09/.ssh/key1

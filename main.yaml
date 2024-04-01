@@ -1,6 +1,6 @@
 ---
 - name: master playbook sql
-  hosts: debian, centos
+  hosts: lvm
 
   roles: 
-    - tomcat
+    - lvm
