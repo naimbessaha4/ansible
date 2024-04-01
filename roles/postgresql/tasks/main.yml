@@ -13,10 +13,6 @@
   include_tasks: install-dependecies.yaml
   tags: install
 
-- name: start postgres
-  include_tasks: start_service.yaml
-  tags: start_postgresql
-
 - name: create db
   include_tasks: create_db.yaml
   tags: creat_db"
