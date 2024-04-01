@@ -1,0 +1,7 @@
+---
+- name: Formatage
+  filesystem:
+    dev: "{{item.lv}}"
+    fstype: ext4
+  loop: "{{montage}}"
+  become: true

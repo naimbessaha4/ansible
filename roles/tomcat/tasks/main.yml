@@ -1,0 +1,31 @@
+---
+# tasks file for tomcat
+
+- name: include vars
+  include_vars: 
+    file: main.yml
+  tags: include_vars
+
+- name: install java
+  include_tasks: install_java.yaml
+  tags: install
+
+- name: install tomcat
+  include_tasks: install.yaml
+  tags: install
+
+- name: create tomcat systemd
+  include_tasks: create_service.yaml
+  tags: create_service
+
+- name: save config files
+  include_tasks: save_conf.yaml
+  tags: save_conf
+
+- name: set jvm parameters
+  include_tasks: set_jvm.yaml
+  tags: set_jvm
+
+- name: deploye apps
+  include_tasks: deploye.yaml
+  tags: deploye

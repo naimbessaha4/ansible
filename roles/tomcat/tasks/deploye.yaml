@@ -1,0 +1,37 @@
+---
+- name: create a new appBase
+  file:
+    path: "{{catalina_base}}/{{item.appBase}}"
+    owner: tomcat
+    group: tomcat
+    state: directory
+  loop: "{{apps}}"
+  become: true
+  tags: deploye
+
+- name: copy the app to appBase
+  copy: 
+    src: "roles/tomcat/files/{{item.war_file}}.war"
+    dest: "{{catalina_base}}/{{item.appBase}}"
+    group: tomcat
+    owner: tomcat
+  loop: "{{apps}}"
+  become: true
+  tags: deploye
+
+- name: create a new host
+  lineinfile:
+    path: "{{catalina_base}}/conf/server.xml"
+    insertafter: '</Host>'
+    line: '<Host name="{{item.app_name}}" appBase="{{item.appBase}}"
+    unpackWARs="true" autoDeploy="true"> </Host>'
+    state: present
+  loop: "{{apps}}"
+  become: true
+  notify: restart tomcat
+  tags: deploye
+
+
+
+
+  

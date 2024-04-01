@@ -1,0 +1,17 @@
+---
+- name: Create Pm
+  file: 
+    path: "{{item.pm}}"
+    state: directory 
+  loop: "{{montage}}"
+  become: true
+
+
+- name: Montage
+  mount: 
+    path: "{{item.pm}}"
+    src: "{{item.lv}}"
+    state: mounted
+    fstype: ext4
+  loop: "{{montage}}"
+  become: true

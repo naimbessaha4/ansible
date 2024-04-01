@@ -1,0 +1,14 @@
+---
+- name: install lib
+  apt: 
+    name: python3-psycopg2
+    state: latest
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: install lib
+  yum: 
+    name: python3-psycopg2
+    state: latest
+  become: true
+  when: ansible_os_family == 'RedHat'

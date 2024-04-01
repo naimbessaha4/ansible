@@ -1,0 +1,22 @@
+---
+- name: Create a backup directory
+  file:
+    path: "/opt/postgresql/backups/"
+    mode: 0777
+    state: directory
+  become: true
+  tags: export_db
+
+- name: export a db
+  postgresql_db: 
+    name: "{{db_name}}"
+    state: dump
+    target: "/opt/postgresql/backups/{{db_name}}_{{ansible_date_time.date}}.sql"
+  become_user: postgres
+  tags: export_db
+
+- name: retrive dump files
+  fetch: 
+    src: "/opt/postgresql/backups/{{db_name}}_{{ansible_date_time.date}}.sql"
+    dest: "{{backups_path}}/{{db_name}}_{{ansible_date_time.date}}.sql"
+  tags: export_db

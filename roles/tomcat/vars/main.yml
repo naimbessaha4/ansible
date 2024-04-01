@@ -1,0 +1,22 @@
+---
+# vars file for tomcat
+tomcat_url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz
+
+catalina_base: /opt/tomcat
+
+XMS: "125m"
+XMX: "250m"
+
+apps: 
+  - app_name: www.webapp.lgw
+    war_file: webapp
+    appBase: webapp
+
+
+service: 
+  - name: tomcat
+    user: tomcat
+    group: tomcat
+    java_home: /usr/lib/jvm/default-java
+    catalina_home: /opt/tomcat
+    catalina_base: /opt/tomcat

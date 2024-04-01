@@ -1,0 +1,14 @@
+---
+- name: install Java Debian
+  apt: 
+    name: default-jdk
+    state: latest
+  when: ansible_os_family == "Debian"
+  become: true
+
+- name: Install Java RedHat
+  yum: 
+    name: default-jdk
+    state: latest
+  when: ansible_os_family == "RedHat"
+  become: true

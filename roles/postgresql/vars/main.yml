@@ -1,0 +1,4 @@
+---
+db_restore: "dbofi_2024-03-31"
+backups_path: "roles/postgresql/files/backups"
+db_name: dbofi

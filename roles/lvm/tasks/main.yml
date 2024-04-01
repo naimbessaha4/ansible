@@ -1,0 +1,27 @@
+---
+# tasks file for lvm
+
+- name: include vars
+  include_vars: 
+    file: main.yml
+  tags: include_vars
+
+- name: create physicall volume
+  include_tasks: pv_create.yaml
+  tags: pv_create
+
+- name: create global volume
+  include_tasks: vg_create.yaml
+  tags: vg_create
+
+- name: create logical volume
+  include_tasks: lv_create.yaml
+  tags: lv_create
+
+- name: formatting logical volumes
+  include_tasks: formatage.yaml
+  tags: formating
+
+- name: mount point
+  include_tasks: montage.yaml
+  tags: mount_point

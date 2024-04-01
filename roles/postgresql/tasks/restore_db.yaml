@@ -1,0 +1,16 @@
+---
+- name: copy db to remote
+  copy: 
+    src: "{{backups_path}}/{{db_restore}}.sql"
+    dest: "/opt/postgres/backups/{{db_restore}}.sql"
+    mode: 0777
+  become: true
+  tags: import_db
+
+- name: restore db
+  postgresql_db: 
+    state: restore
+    name: "dbofi"
+    target: "/opt/postgres/backups/{{db_restore}}.sql"
+  become_user: postgres
+  tags: import_db

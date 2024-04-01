@@ -1,0 +1,22 @@
+---
+- name: sauvegarder les fichier de configuration
+  fetch: 
+    src: "{{catalina_base}}/conf/server.xml"
+    dest: "roles/tomcat/files/conf_save/{{ansible_date_time.date}}_conf_files"
+  become: true
+
+  tags: save_conf
+
+- name: sauvegarder les fichier de configuration
+  fetch: 
+    src: "{{catalina_base}}/conf/tomcat-users.xml"
+    dest: "roles/tomcat/files/conf_save/{{ansible_date_time.date}}_conf_files"
+  become: true
+  tags: save_conf
+
+- name: sauvegarder les fichier de configuration
+  fetch: 
+    src: "{{catalina_base}}/conf/logging.properties"
+    dest: "roles/tomcat/files/conf_save/{{ansible_date_time.date}}_conf_files"
+  become: true
+  tags: save_conf

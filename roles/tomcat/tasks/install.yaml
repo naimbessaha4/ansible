@@ -1,0 +1,53 @@
+---
+- name: create user tomcat
+  user: 
+    name: tomcat
+    home: /opt/tomcat
+    shell: /bin/false
+  become: true
+
+- name: download tomcat
+  get_url: 
+    dest: /tmp
+    url: "{{tomcat_url}}"
+
+- name: unarchive 
+  unarchive:
+    src: "/tmp/apache-tomcat-8.5.99.tar.gz"
+    dest: /opt/tomcat
+    remote_src: yes
+    extra_opts: "--strip-components=1"
+    creates: /opt/tomcat/bin/catalina.sh
+  become: true
+
+- name: set to tocmcat user
+  file: 
+    path: /opt/tomcat
+    owner: tomcat
+    group: tomcat
+    recurse: yes
+  become: true
+
+- name: excute privileges
+  file: 
+    path: /opt/tomcat/bin
+    mode: u+x
+    recurse: yes
+  become: true
+
+- name: delete valve
+  lineinfile:
+    path: "{{catalina_base}}/webapps/manager/META-INF/context.xml"
+    line: '<Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />'
+    state: absent
+  become: true
+
+
+- name: delete valve
+  lineinfile:
+    path: "{{catalina_base}}/webapps/host-manager/META-INF/context.xml"
+    line: '<Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />'
+    state: absent
+  become: true

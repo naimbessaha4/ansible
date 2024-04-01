@@ -1,0 +1,17 @@
+---
+# handlers file for tomcat
+- name: daemon-reload
+  shell: "systemctl daemon-reload"
+  become: true
+
+- name: start_service
+  service: 
+    name: tomcat
+    state: started
+  become: true
+
+- name: restart tomcat
+  service: 
+    name: tomcat
+    state: restarted
+  become: true

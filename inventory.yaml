@@ -1,0 +1,13 @@
+---
+all:
+  children:
+    debian:
+      hosts:
+        172.16.19.91
+    centos:
+      hosts: 
+        172.16.20.15
+    lvm:
+      hosts:
+        lvm5@172.16.2.10:
+          

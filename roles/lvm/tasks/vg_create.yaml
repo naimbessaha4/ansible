@@ -1,0 +1,6 @@
+---
+- name: create vg
+  lvg: 
+    vg: "{{name_vg}}"
+    pvs: "{{discks}}"
+  become: true

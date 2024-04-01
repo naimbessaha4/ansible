@@ -1,0 +1,16 @@
+[Unit]
+Description={{item.name}}
+After=network.target
+[Service]
+Type=forking
+User={{item.user}}
+Group={{item.group}}
+Environment="JAVA_HOME={{item.java_home}}"
+Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+Environment="CATALINA_BASE={{item.catalina_base}}"
+Environment="CATALINA_HOME={{item.catalina_home}}"
+Environment="CATALINA_PID={{item.catalina_base}}/temp/tomcat.pid"
+ExecStart={{item.catalina_base}}/bin/startup.sh
+ExecStop={{item.catalina_base}}/bin/shutdown.sh
+[Install]
+WantedBy=multi-user.target

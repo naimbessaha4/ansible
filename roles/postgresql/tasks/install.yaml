@@ -1,0 +1,15 @@
+---
+- name: Install Postgres Debian
+  apt: 
+    name: postgresql
+    state: latest
+  when: ansible_os_family == "Debian"
+  become: true
+
+- name: Install postgres RedHat
+  yum: 
+    name: postgresql-server
+    state: latest
+  when: ansible_os_family == "RedHat"
+  become: true
+  

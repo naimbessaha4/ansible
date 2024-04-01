@@ -1,0 +1,6 @@
+---
+- name: master playbook sql
+  hosts: debian, centos
+
+  roles: 
+    - tomcat

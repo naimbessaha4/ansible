@@ -1,0 +1,20 @@
+---
+# vars file for lvm
+discks:
+  - /dev/sdf
+  - /dev/sdg
+
+name_vg: vg_Tp_Naim
+
+lvm: 
+  - name: lv1_naim
+    size: 20
+  - name: lv2_naim
+    size: 30
+
+montage: 
+  - lv: /dev/{{name_vg}}/lv1_naim
+    pm: /tp3_Naim
+  - lv: /dev/{{name_vg}}/lv1_naim
+    pm: /tp3_Naim
+      

@@ -1,0 +1,5 @@
+---
+- name: Create PV
+  shell: "pvcreate {{item}}"
+  loop: "{{discks}}"
+  become: true

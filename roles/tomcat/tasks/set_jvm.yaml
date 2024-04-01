@@ -1,0 +1,7 @@
+---
+- name: set jvm standards
+  template: 
+    src: roles/tomcat/templates/setenv.sh.j2
+    dest: "{{catalina_base}}/bin/setenv.sh"
+  become: true
+  tags: set_jvm

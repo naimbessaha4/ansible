@@ -1,0 +1,7 @@
+---
+- name: Lancer le service postgreslq
+  service: 
+    name: postgresql
+    state: started
+  become: true
+

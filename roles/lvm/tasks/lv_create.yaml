@@ -1,0 +1,9 @@
+---
+- name: create lvm
+  lvol:
+    lv: "{{item.name}}"
+    size: "{{item.size}}"
+    vg: "{{name_vg}}"
+    force: true
+  loop: "{{lvm}}" 
+  become: true
