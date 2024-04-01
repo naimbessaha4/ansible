@@ -2,7 +2,6 @@ Cette section explique le fonctionnement du projet.
 
 * Ce projet présente 3 roles ansible différent:
   1. Tomcat:
-       Ici, les différentes taches mise en place permet:
          - installer java
          - d'installer tomcat manuellement
          - créé le service systemd tomcat (tomcat.service)(Démarer le service(handler))
