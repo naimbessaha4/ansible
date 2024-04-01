@@ -1,2 +1,7 @@
 ---
 # handlers file for postgresql
+- name: Lancer le service postgreslq
+  service: 
+    name: postgresql
+    state: started
+  become: true
